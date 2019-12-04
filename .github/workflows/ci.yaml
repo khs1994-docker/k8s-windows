@@ -9,7 +9,6 @@ jobs:
     - run: |
         pwd 
         go env
-        
         mkdir -Force $HOME/go/src/github.com/containerd
         git clone -b windows_port --depth=1 https://github.com/jterry75/cri.git $HOME/go/src/github.com/containerd/containerd
         cd $HOME/go/src/github.com/containerd/containerd/cmd/containerd/
@@ -17,7 +16,7 @@ jobs:
         ls
         go build -o $HOME/containerd.exe .
         ls $HOME
-        & $HOME/containerd.exe
+        $HOME/containerd.exe
     - name: Upload artifacts (windows_amd64)
       uses: actions/upload-artifact@v1
       with:
