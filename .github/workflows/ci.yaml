@@ -12,8 +12,11 @@ jobs:
         mkdir -Force $HOME/go/src/github.com/containerd
         git clone -b windows_port --depth=1 https://github.com/jterry75/cri.git $HOME/go/src/github.com/containerd/containerd
         cd $HOME/go/src/github.com/containerd/containerd/cmd/containerd/
-        go get
+        
         rm -r -force ../../vendor
+        
+        go get
+        
         go build -o $HOME/containerd.exe .
         ls $HOME
     - run: |
