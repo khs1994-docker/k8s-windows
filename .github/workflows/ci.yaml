@@ -7,6 +7,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - run: |
+        pwd 
         go env
         mkdir -Force $HOME/go/src/github.com/containerd
         git clone -b windows_port --depth=1 https://github.com/jterry75/cri.git $HOME/go/src/github.com/containerd/containerd
@@ -14,5 +15,8 @@ jobs:
         go get
         go build -o $HOME/containerd.exe .
         ls $HOME
-        curl -L https://raw.githubusercontent.com/microsoft/SDN/master/Kubernetes/containerd/containerd-config.toml -o $HOME/config.toml
-        & $HOME/containerd.exe --config $HOME/config.toml
+    - name: Upload artifacts (windows_amd64)
+      uses: actions/upload-artifact@v1
+      with:
+        name: windows_amd64
+        path: "C:\\Users\\runneradmin\\containerd.exe"
