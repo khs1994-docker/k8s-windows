@@ -12,4 +12,7 @@ jobs:
         git clone -b windows_port --depth=1 https://github.com/jterry75/cri.git $HOME/go/src/github.com/containerd/containerd
         cd $HOME/go/src/github.com/containerd/containerd/cmd/containerd/
         go get
-        go build -o ~/containerd.exe .
+        go build -o $HOME/containerd.exe .
+        ls $HOME
+        curl -L https://raw.githubusercontent.com/microsoft/SDN/master/Kubernetes/containerd/containerd-config.toml -o $HOME/config.toml
+        & $HOME/containerd.exe --config $HOME/config.toml
