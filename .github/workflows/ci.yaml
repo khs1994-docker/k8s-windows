@@ -13,9 +13,7 @@ jobs:
         git clone -b windows_port --depth=1 https://github.com/jterry75/cri.git $HOME/go/src/github.com/containerd/cri
         cd $HOME/go/src/github.com/containerd/cri/cmd/containerd/
         
-        rm -r -force ../../vendor
-        
-        go get -v
+        go get
         
         ls $HOME/go/src
         
