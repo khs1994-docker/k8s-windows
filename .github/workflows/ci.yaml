@@ -19,8 +19,8 @@ jobs:
         
         go build -o $HOME/containerd.exe .
         ls $HOME
-    - run: |
-        & "$HOME/containerd.exe"
+#     - run: |
+#         & "$HOME/containerd.exe"
     - name: Upload artifacts (windows_amd64)
       uses: actions/upload-artifact@v1
       with:
