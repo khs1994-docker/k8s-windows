@@ -15,9 +15,7 @@ jobs:
         cd $HOME/go/src/github.com/containerd/containerd/cmd
         govendor init
         govendor add +external
-        cd cmd/containerd
-        ls
-        go build -o $HOME/containerd.exe .
+        go build -o $HOME/containerd.exe cmd/containerd/
         ls $HOME
     - name: Upload artifacts (windows_amd64)
       uses: actions/upload-artifact@v1
