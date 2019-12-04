@@ -10,12 +10,14 @@ jobs:
         pwd 
         go env
         mkdir -Force $HOME/go/src/github.com/containerd
-        git clone -b windows_port --depth=1 https://github.com/jterry75/cri.git $HOME/go/src/github.com/containerd/containerd
-        cd $HOME/go/src/github.com/containerd/containerd/cmd/containerd/
+        git clone -b windows_port --depth=1 https://github.com/jterry75/cri.git $HOME/go/src/github.com/containerd/cri
+        cd $HOME/go/src/github.com/containerd/cri/cmd/containerd/
         
         rm -r -force ../../vendor
         
-        go get
+        go get -v
+        
+        ls $HOME/go/src
         
         go build -o $HOME/containerd.exe .
         ls $HOME
