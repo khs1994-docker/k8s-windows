@@ -9,10 +9,14 @@ jobs:
     - run: |
         pwd 
         go env
+        go get -u -v github.com/kardianos/govendor
         mkdir -Force $HOME/go/src/github.com/containerd
         git clone -b windows_port --depth=1 https://github.com/jterry75/cri.git $HOME/go/src/github.com/containerd/containerd
-        cd $HOME/go/src/github.com/containerd/containerd/cmd/containerd/
-        
+        cd $HOME/go/src/github.com/containerd/containerd/cmd
+        govendor init
+        govendor add +external
+        cd cmd/containerd
+        ls -la 
         go build -o $HOME/containerd.exe .
         ls $HOME
     - name: Upload artifacts (windows_amd64)
