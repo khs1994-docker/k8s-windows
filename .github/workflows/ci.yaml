@@ -1,6 +1,6 @@
 on: push
 
-name: ci
+name: containerd
 
 jobs:
   ci:
@@ -8,8 +8,12 @@ jobs:
     steps:
     - run: |
         pwd 
+        
         go env
+        
         mkdir -Force $HOME/go/src/github.com/containerd
+        mkdir -Force $HOME/containerd
+        
         git clone -b windows_port --depth=1 https://github.com/jterry75/cri.git $HOME/go/src/github.com/containerd/cri
         cd $HOME/go/src/github.com/containerd/cri/cmd/containerd/
         
@@ -17,12 +21,13 @@ jobs:
         
         ls $HOME/go/src
         
-        go build -o $HOME/containerd.exe .
+        go build -o $HOME/containerd/containerd.exe .
         ls $HOME
+      name: Build  
 #     - run: |
 #         & "$HOME/containerd.exe"
-    - name: Upload artifacts (windows_amd64)
+    - name: Upload artifacts
       uses: actions/upload-artifact@v1
       with:
-        name: windows_amd64
-        path: "C:\\Users\\runneradmin\\containerd.exe"
+        name: containerd
+        path: "C:\\Users\\runneradmin\\containerd"
